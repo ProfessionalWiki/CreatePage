@@ -1,0 +1,34 @@
+{
+    "description": "Create page form parsing and redirection test",
+    "setup": [
+      {
+        "namespace": "NS_MAIN",
+        "page": "TestPage",
+        "contents": "{{#createpage:||Create this page!}}"
+      }
+    ],
+    "tests": [
+      {
+        "type": "parser",
+        "about": "Test that the create page form is displayed with the correct submit button",
+        "subject": "TestPage",
+        "request-parameters": {},
+        "assert-output": {
+          "to-contain": [
+            "<form action=\"/index.php/Special:CreatePageRedirect\"",
+            "class=\"createpageform\"",
+            "Create this page!"
+          ]
+        }
+      }
+    ],
+    "settings": {
+      "wgLang": "en"
+    },
+    "meta": {
+      "version": "2",
+      "is-incomplete": false,
+      "debug": false
+    }
+  }
+  
