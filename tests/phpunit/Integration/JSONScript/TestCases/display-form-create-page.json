@@ -1,34 +1,90 @@
 {
-    "description": "Create page form parsing and redirection test",
-    "setup": [
-      {
-        "namespace": "NS_MAIN",
-        "page": "TestPage",
-        "contents": "{{#createpage:||Create this page!}}"
-      }
-    ],
-    "tests": [
-      {
-        "type": "parser",
-        "about": "Test that the create page form is displayed with the correct submit button",
-        "subject": "TestPage",
-        "request-parameters": {},
-        "assert-output": {
-          "to-contain": [
-            "<form action=\"/index.php/Special:CreatePageRedirect\"",
-            "class=\"createpageform\"",
-            "Create this page!"
-          ]
-        }
-      }
-    ],
-    "settings": {
-      "wgLang": "en"
+  "description": "Create page form parsing and redirection test",
+  "setup": [
+    {
+      "namespace": "NS_MAIN",
+      "page": "TestPage",
+      "contents": "{{#createpage:||Create this page!}}"
     },
-    "meta": {
-      "version": "2",
-      "is-incomplete": false,
-      "debug": false
+    {
+      "namespace": "NS_MAIN",
+      "page": "TestPage_course",
+      "contents": "{{#createpage:Course}}"
+    },
+    {
+      "namespace": "NS_MAIN",
+      "page": "TestPage_your_page_name",
+      "contents": "{{#createpage:|Your page name}}"
+    },
+    {
+      "namespace": "NS_MAIN",
+      "page": "TestPage_create_course",
+      "contents": "<p style=\"display:inline\">Enter the name for a new course:</p> {{#createpage:Course||Create course}}"
     }
+  ],
+  "tests": [
+    {
+      "type": "parser",
+      "about": "Test that the create page form is displayed with the correct submit button",
+      "subject": "TestPage",
+      "request-parameters": {},
+      "assert-output": {
+        "to-contain": [
+          "<form action=\"/index.php/Special:CreatePageRedirect\"",
+          "class=\"createpageform\"",
+          "Create this page!"
+        ]
+      }
+    },
+    {
+      "type": "parser",
+      "about": "Test create a page in the Course namespace",
+      "subject": "TestPage_course",
+      "request-parameters": {},
+      "assert-output": {
+        "to-contain": [
+          "<form action=\"/index.php/Special:CreatePageRedirect\"",
+          "class=\"createpageform\"",
+          "<input type=\"hidden\" value=\"Course\" name=\"pagens\" />",
+          "Create page"
+        ]
+      }
+    },
+    {
+      "type": "parser",
+      "about": "Test create a page with a custom name in the form",
+      "subject": "TestPage_your_page_name",
+      "request-parameters": {},
+      "assert-output": {
+        "to-contain": [
+          "<form action=\"/index.php/Special:CreatePageRedirect\"",
+          "class=\"createpageform\"",
+          "<input class=\"pagenameinput\" value=\"Your page name\" name=\"pagename\" />",
+          "Create page"
+        ]
+      }
+    },
+    {
+      "type": "parser",
+      "about": "Test create a course with the correct input field and submit button",
+      "subject": "TestPage_create_course",
+      "request-parameters": {},
+      "assert-output": {
+        "to-contain": [
+          "<p style=\"display:inline\">Enter the name for a new course:</p>",
+          "<form action=\"/index.php/Special:CreatePageRedirect\"",
+          "class=\"createpageform\"",
+          "Create course"
+        ]
+      }
+    }
+  ],
+  "settings": {
+    "wgLang": "en"
+  },
+  "meta": {
+    "version": "2",
+    "is-incomplete": false,
+    "debug": false
   }
-  
+}
