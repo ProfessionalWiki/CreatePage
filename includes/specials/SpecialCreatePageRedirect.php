@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Title\Title;
+
 /**
  * This file is part of the MediaWiki extension CreatePage.
  *
