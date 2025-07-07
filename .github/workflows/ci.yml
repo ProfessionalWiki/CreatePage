@@ -17,13 +17,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - mediawiki_version: '1.39'
-            smw_version: 4.2.0  # required only for JSONScript testing
-            php_version: 8.1
-            database_type: mysql
-            database_image: "mysql:8"
-            coverage: false
-            experimental: false
           - mediawiki_version: '1.40'
             smw_version: dev-master
             php_version: 8.1
@@ -34,6 +27,20 @@ jobs:
           - mediawiki_version: '1.42'
             smw_version: dev-master
             php_version: 8.2
+            database_type: mysql
+            database_image: "mariadb:11.2"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.43'
+            smw_version: dev-master
+            php_version: 8.3
+            database_type: mysql
+            database_image: "mariadb:11.2"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.44'
+            smw_version: dev-master
+            php_version: 8.3
             database_type: mysql
             database_image: "mariadb:11.2"
             coverage: false
