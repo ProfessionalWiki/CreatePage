@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dağlı95"
+			"Dağlı95",
+			"Əkrəm"
 		]
 	},
-	"cp-create": "Məqalə yarat"
+	"cp-desc": "Yeni səhifənin yaradılması üçün forma daxil etməyə imkan verir",
+	"cp-create": "Səhifə yarat"
 }
