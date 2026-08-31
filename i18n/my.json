@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dr Lotus Black"
+			"Dr Lotus Black",
+			"Kalixlouiis"
 		]
 	},
+	"cp-desc": "စာမျက်နှာအသစ် ဖန်တီးရန် ဖောင်ပုံစံတစ်ခုကို ထည့်သွင်းအသုံးပြုခွင့်ပြုသည်",
 	"cp-create": "စာမျက်နှာ ဖန်တီးရန်"
 }
