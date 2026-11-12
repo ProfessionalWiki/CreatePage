@@ -86,15 +86,18 @@
 						searchNS = 0;
 					}
 
-					$.data( node, 'request', api.get( {
+					// .then() would return a new promise without the abort() that cancel needs
+					var request = api.get( {
 						action: 'opensearch',
 						search: query,
 						namespace: searchNS,
 						limit: maxRows,
 						suggest: ''
-					} ).done( function ( data ) {
+					} );
+					request.then( function ( data ) {
 						response( data[ 1 ] );
-					} ) );
+					} );
+					$.data( node, 'request', request );
 				},
 				cancel: function () {
 					var node = this[ 0 ],
